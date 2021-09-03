@@ -1,0 +1,17 @@
+{
+  "CREATE": {
+    "/StackSetName": "test",
+    "/StackInstances": {
+      "DeploymentTargets": {
+        "Accounts": ["123456789012"]
+      },
+      "Regions" : ["eu-west-1"]
+    },
+    "/OperationPreferences": {
+      "FailureToleranceCount": 0,
+      "MaxConcurrentCount": 1,
+      "RegionOrder": [],
+      "RegionConcurrencyType": "SEQUENTIAL"
+    }
+  }
+}

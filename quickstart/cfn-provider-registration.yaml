@@ -1,0 +1,78 @@
+Description: Registers the latest version of the ProServe::Cloudformation::StackInstances CloudFormation Resource
+
+Resources:
+  CfnLogAndMetricsDeliveryRole:
+    Type: AWS::IAM::Role
+    Properties:
+      MaxSessionDuration: 43200
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+              - resources.cloudformation.amazonaws.com
+          Action: sts:AssumeRole
+      Path: "/"
+      Policies:
+      - PolicyName: LogAndMetricsDeliveryRolePolicy
+        PolicyDocument:
+          Version: "2012-10-17"
+          Statement:
+          - Effect: Allow
+            Action:
+            - logs:CreateLogGroup
+            - logs:CreateLogStream
+            - logs:DescribeLogGroups
+            - logs:DescribeLogStreams
+            - logs:PutLogEvents
+            - cloudwatch:ListMetrics
+            - cloudwatch:PutMetricData
+            Resource: "*"
+  CfnResourceProviderExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      MaxSessionDuration: 8400
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: resources.cloudformation.amazonaws.com
+            Action: sts:AssumeRole
+      Path: "/"
+      Policies:
+        - PolicyName: ResourceTypePolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                - "cloudformation:CreateStackInstances"
+                - "cloudformation:DeleteStackInstances"
+                - "cloudformation:Describe*"
+                - "cloudformation:DescribeStackInstances"
+                - "cloudformation:Get*"
+                - "cloudformation:List*"
+                - "cloudformation:ListStackInstances"
+                - "cloudformation:UpdateStackInstances"
+                Resource: "*"
+  CfnResourceLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties: 
+      LogGroupName: ProServe-Cloudformation-StackInstances
+      RetentionInDays: 30
+  StacksetInstancesCfnResourceProvider:
+    Type: AWS::CloudFormation::ResourceVersion
+    Properties:
+      ExecutionRoleArn: !GetAtt CfnResourceProviderExecutionRole.Arn
+      SchemaHandlerPackage: s3://aws-enterprise-jumpstart/aws-cloudformation-stack-instances/proserve-cloudformation-stackinstances-v1.0.0.zip
+      TypeName: ProServe::Cloudformation::StackInstances
+      LoggingConfig:
+          LogGroupName: !Ref CfnResourceLogGroup
+          LogRoleArn: !GetAtt CfnLogAndMetricsDeliveryRole.Arn
+  CfnResourceProviderDefaultVersion:
+    Type: AWS::CloudFormation::ResourceDefaultVersion
+    Properties:
+      TypeName: ProServe::Cloudformation::StackInstances
+      TypeVersionArn: !Ref StacksetInstancesCfnResourceProvider

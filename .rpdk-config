@@ -1,0 +1,25 @@
+{
+    "artifact_type": "RESOURCE",
+    "typeName": "ProServe::Cloudformation::StackInstances",
+    "language": "java",
+    "runtime": "java8",
+    "entrypoint": "software.amazon.cloudformation.stackinstances.HandlerWrapper::handleRequest",
+    "testEntrypoint": "software.amazon.cloudformation.stackinstances.HandlerWrapper::testEntrypoint",
+    "settings": {
+        "version": false,
+        "subparser_name": null,
+        "verbose": 0,
+        "force": false,
+        "type_name": null,
+        "artifact_type": null,
+        "namespace": [
+            "software",
+            "amazon",
+            "cloudformation",
+            "stackinstances"
+        ],
+        "codegen_template_path": "default",
+        "protocolVersion": "2.0.0"
+    },
+    "executableEntrypoint": "software.amazon.cloudformation.stackinstances.HandlerWrapperExecutable"
+}
