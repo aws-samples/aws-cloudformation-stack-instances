@@ -34,7 +34,7 @@ InstanceC:
       DeploymentTargets:
         Accounts:
         - '123456789012'
-        - '123456789012'
+        - '123456789013'
       Regions:
       - eu-west-1
       - us-east-1
