@@ -6,12 +6,22 @@ which **concurrently** creates stack instances within a particular AWS Cloudform
 ## ProServe::Cloudformation::StackInstances
 
 See example usage of the resource below. Detailed documentation can be found in the [/docs](docs) folder.
-Cloudformation itself has not yet the capability to run operations concurrent on StackSets.
 
-This resource helps to overcome this by implementing a retry mechanism.
+Cloudformation itself has not yet the capability to run operations concurrent on StackSets. This resource helps to overcome this by implementing a retry mechanism.
 Whenever an operation is already ongoing on the same Stackset, the resource provider takes care of retrying with proper backoff configurations. 
 
-Hence, this resource can be used in multiple different CloudFormation stacks without taking care of currently running operations.
+Hence, this resource can be used to meet requirements from different use cases without taking care of currently running operations.
+
+### Typical Use Cases
+####  AWS Account Vending process integrated in AWS Service Catalog
+
+This resource provider can be used within an Account Blueprint published via AWS Service Catalog Products.
+In case multiple accounts are requested at once, the resource provider takes care handling the concurrency.
+
+#### AWS Service Catalog Products
+
+Any generic AWS Service Catalog Product might have a pre-requisite to enroll a region or account into a central CloudFormation Stackset.
+Multiple users might launch a product at once, which can result in operation conflicts on CloudFormation StackSets. This resource can be integrated in any product template and takes care of concurrency. 
 
 ### Usage
 
