@@ -12,17 +12,6 @@ Whenever an operation is already ongoing on the same Stackset, the resource prov
 
 Hence, this resource can be used to meet requirements from different use cases without taking care of currently running operations.
 
-### Typical Use Cases
-####  AWS Account Vending process integrated in AWS Service Catalog
-
-This resource provider can be used within an Account Blueprint published via AWS Service Catalog Products.
-In case multiple accounts are requested at once, the resource provider takes care handling the concurrency.
-
-#### AWS Service Catalog Products
-
-Any generic AWS Service Catalog Product might have a pre-requisite to enroll a region or account into a central CloudFormation Stackset.
-Multiple users might launch a product at once, which can result in operation conflicts on CloudFormation StackSets. This resource can be integrated in any product template and takes care of concurrency. 
-
 ### Usage
 
 ```yaml
@@ -45,6 +34,18 @@ InstanceC:
     Capabilities:
     - CAPABILITY_IAM
 ```
+
+### Typical Use Cases
+####  AWS Account Vending process integrated in AWS Service Catalog
+
+This resource provider can be used within an Account Blueprint published via AWS Service Catalog Products.
+In case multiple accounts are requested at once, the resource provider takes care handling the concurrency.
+
+#### AWS Service Catalog Products
+
+Any generic AWS Service Catalog Product might have a pre-requisite to enroll a region or account into a central CloudFormation Stackset.
+Multiple users might launch a product at once, which can result in operation conflicts on CloudFormation StackSets. This resource can be integrated in any product template and takes care of concurrency. 
+
 
 ### Quickstart
 
