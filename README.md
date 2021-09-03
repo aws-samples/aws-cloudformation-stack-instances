@@ -61,6 +61,17 @@ For manual deployments check the [cfn-provider-registration.yaml](quickstart/cfn
 
 Please refer to the AWS CloudFormation CLI documentation [https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-types.html](https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/resource-types.html).
 
+#### Pre-requisites
+
+* Install CFN CLI with Java Plugin: https://github.com/aws-cloudformation/cloudformation-cli-java-plugin
+* Have Java 1.8 and Maven installed
+
+#### Build
+
+* `mvn package` to build sources
+* `cfn submit --region <aws-region> --dry-run` for a dry-run
+* `cfn submit --region <aws-region>` to finally submit the resource provider to AWS CloudFormation
+
 ### Future Work
 
 * Add the option to specify multiple deployment targets with different parameter overrides.
