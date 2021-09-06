@@ -65,6 +65,8 @@ Please refer to the AWS CloudFormation CLI documentation [https://docs.aws.amazo
 #### Pre-requisites
 
 * Install CFN CLI with Java Plugin: https://github.com/aws-cloudformation/cloudformation-cli-java-plugin
+* Install Docker and start service
+* Install SAM CLI: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html
 * Have Java 1.8 and Maven installed
 
 #### Build
