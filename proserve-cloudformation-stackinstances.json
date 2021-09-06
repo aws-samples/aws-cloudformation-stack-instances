@@ -1,6 +1,6 @@
 {
     "typeName": "ProServe::Cloudformation::StackInstances",
-    "description": "Resource schema to add cloudformation stack instances to stacksets",
+    "description": "Concurrent cloudformation stack instance management within stacksets",
     "sourceUrl": "https://gitlab.aws.dev/manu-lz/aws-cloudformation-stack-instances",
     "definitions": {
         "OperationPreferences": {
