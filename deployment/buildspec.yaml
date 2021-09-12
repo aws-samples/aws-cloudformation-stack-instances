@@ -19,7 +19,7 @@ phases:
     commands:
     - mvn package
     - cfn submit --dry-run
-    - 'if [[ ! -z "$CODEBUILD_WEBHOOK_TRIGGER" ]]; then; cp proserve-cloudformation-stackinstances.zip proserve-cloudformation-stackinstances-$(echo $CODEBUILD_WEBHOOK_TRIGGER | sed "s/tag\///").zip; fi;'
+    - 'if [[ ! -z "$CODEBUILD_WEBHOOK_TRIGGER" ]]; then cp proserve-cloudformation-stackinstances.zip proserve-cloudformation-stackinstances-$(echo $CODEBUILD_WEBHOOK_TRIGGER | sed "s/tag\///").zip; fi;'
   post_build:
     commands:
     - echo Build completed on $(date)
