@@ -20,7 +20,7 @@ phases:
     - mvn package
     - cfn submit --dry-run
     - echo $(python deployment/extract_version.py)
-    - 'cp proserve-cloudformation-stackinstances.zip proserve-cloudformation-stackinstances-$(python deployment/extract_version.py).zip'
+    - 'cp ${CFN_ZIP_PREFIX}.zip ${CFN_ZIP_PREFIX}-$(python deployment/extract_version.py).zip'
     - 'cp quickstart/cfn-provider-registration.yaml .'
   post_build:
     commands:
@@ -28,6 +28,6 @@ phases:
 artifacts:
   files:
   - cfn-provider-registration.yaml
-  - proserve-cloudformation-stackinstances*
+  - '*.zip'
 
  
