@@ -23,7 +23,7 @@ Parameters:
     Default: aws-cloudformation-stack-instances/proserve-cloudformation-stackinstances-
   Version:
     Type: String
-    Default: v1.0.2
+    Default: v1.0.3
 Resources:
   CfnLogAndMetricsDeliveryRole:
     Type: AWS::IAM::Role
