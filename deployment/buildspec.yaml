@@ -10,7 +10,7 @@ phases:
       python: 3.8
       java: corretto8
     commands:
-      - pip install cloudformation-cli-java-plugin
+      - pip install cloudformation-cli-java-plugin cfn-flip
   pre_build:
     commands:
     - echo "Building with Python - $(python --version)"
@@ -19,8 +19,9 @@ phases:
     commands:
     - mvn package
     - cfn submit --dry-run
-    - echo $CC_COMMIT_MSG
-    - 'if [[ ! -z "$CC_COMMIT_MSG" ]]; then cp proserve-cloudformation-stackinstances.zip proserve-cloudformation-stackinstances-${CC_COMMIT_MSG}.zip; fi;'
+    - echo $(python deployment/extract_version.py)
+    - 'cp proserve-cloudformation-stackinstances.zip proserve-cloudformation-stackinstances-$(python deployment/extract_version.py).zip'
+    - 'cp quickstart/cfn-provider-registration.yaml .'
   post_build:
     commands:
     - echo Build completed on $(date)
