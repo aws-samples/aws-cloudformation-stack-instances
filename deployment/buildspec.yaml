@@ -1,0 +1,28 @@
+version: 0.2
+cache:
+  paths:
+  - ~/.cache/pip/**/*
+  - ~/.m2
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+      java: corretto8
+    commands:
+      - pip install cloudformation-cli-java-plugin
+  pre_build:
+    commands:
+    - echo "Building with Python - $(python --version)"
+    - echo "Building with Java - $(java -version)"
+  build:
+    commands:
+    - mvn package
+    - cfn submit --dry-run
+  post_build:
+    commands:
+    - echo Build completed on $(date)
+artifacts:
+  files:
+  - proserve-cloudformation-stackinstances*
+
+ 
