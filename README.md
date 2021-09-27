@@ -81,6 +81,8 @@ Please refer to the AWS CloudFormation CLI documentation [https://docs.aws.amazo
 
 ## Notes
 
+* While code samples in this repository has been tested and believe it works well, as always, be sure to test it in your environment before using it in production!
+
 > Read and List operations implementations do not meet the contract test requirements. This is on purpose, as deleting twice or creating of stack instances multiple times does create any drift and still ensures proper state handling. Additionally, adoption of this AWS CloudFormation resource provider is very straight forward this way. Instances do not have to be deleted first and re-created with this resource.
 
 The RPDK will automatically generate the correct resource model from the schema whenever the project is built via Maven. You can also do this manually with the following command: `cfn generate`.
