@@ -39,6 +39,8 @@ public class Comparator {
      * @return boolean indicates if two collections equal.
      */
     public static boolean equals(final Set<Parameter> parameters1, final Set<Parameter> parameters2) {
+        if (parameters1 == null && parameters2 == null) return true;
+        if (parameters1 == null || parameters2 == null) return false;
         for (Parameter param1 : parameters1) {
             if (parameters2.stream().noneMatch(p -> p.getParameterKey().compareTo(param1.getParameterKey()) == 0)) return false;
             Optional<Parameter> param2 = parameters2.stream().filter(p -> p.getParameterKey().compareTo(param1.getParameterKey()) == 0).findFirst();
