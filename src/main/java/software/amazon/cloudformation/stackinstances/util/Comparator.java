@@ -23,6 +23,7 @@ import software.amazon.cloudformation.stackinstances.ResourceModel;
 
 import java.util.Collection;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -39,10 +40,10 @@ public class Comparator {
      */
     public static boolean equals(final Set<Parameter> parameters1, final Set<Parameter> parameters2) {
         for (Parameter param1 : parameters1) {
-            for (Parameter param2 : parameters2) {
-                if (param1.getParameterKey().compareTo(param2.getParameterKey()) != 0  || param1.getParameterValue().compareTo(param2.getParameterValue()) != 0) {
-                    return false;
-                }
+            if (parameters2.stream().noneMatch(p -> p.getParameterKey().compareTo(param1.getParameterKey()) == 0)) return false;
+            Optional<Parameter> param2 = parameters2.stream().filter(p -> p.getParameterKey().compareTo(param1.getParameterKey()) == 0).findFirst();
+            if (!param2.isPresent() || param2.get().getParameterValue().compareTo(param1.getParameterValue()) != 0) {
+                return false;
             }
         }
         return true;
