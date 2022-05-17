@@ -1,3 +1,5 @@
+**repository _moved_, maintained elsewhere -> https://github.com/curlim/aws-cloudformation-stack-instances**
+
 # Concurrent AWS CloudFormation Stack Instance Resource Provider Type
 
 This repository implements an AWS CloudFormation Resource Provider,
